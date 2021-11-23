@@ -1,0 +1,39 @@
+name: escrapear-la-tercera
+
+# Cómo se ejecuta el flujo de trabajo
+on:
+  push:
+    branches: master
+
+# Cada workflow está compuesto de diferentes tareas
+jobs:
+  escrapear:
+    runs-on: macos-latest
+
+    # Un workflow está compuesto de pasos
+    steps:
+      # Chequea el repositorio de $GITHUB_WORKSPACE, para que las tareas puedan acceder a él
+      - uses: actions/checkout@v2
+      # Configurar R
+      - uses: r-lib/actions/setup-r@v1
+      # Instalamos los paquetes que usa nuestro script
+      - name: instalar paquetes
+        run: |
+          R -e 'install.packages("rvest")'
+          R -e 'install.packages("dplyr")'
+          R -e 'install.packages("tidyr")'
+          R -e 'install.packages("lubridate")'
+      # Ejecutar el script
+      - name: escrapear las noticias
+        run: Rscript extraccion-lo-ultimo.R
+      # Le hacemos commit a los archivos nuevos
+      - name: guardar los archivos en el repositorio
+        run: |
+          git config --local user.name actions-user
+          git config --local user.email "actions@github.com"
+          git add datos/*
+          git commit -m "actualiza noticias $(date)"
+          git push origin master
+        env:
+          REPO_KEY: ${{secrets.GITHUB_TOKEN}}
+          username: github-actions

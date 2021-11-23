@@ -14,8 +14,10 @@ jobs:
     steps:
       # Chequea el repositorio de $GITHUB_WORKSPACE, para que las tareas puedan acceder a él
       - uses: actions/checkout@v2
+      
       # Configurar R
       - uses: r-lib/actions/setup-r@v1
+      
       # Instalamos los paquetes que usa nuestro script
       - name: instalar paquetes
         run: |
@@ -23,9 +25,11 @@ jobs:
           R -e 'install.packages("dplyr")'
           R -e 'install.packages("tidyr")'
           R -e 'install.packages("lubridate")'
+          
       # Ejecutar el script
       - name: escrapear las noticias
         run: Rscript extraccion-lo-ultimo.R
+        
       # Le hacemos commit a los archivos nuevos
       - name: guardar los archivos en el repositorio
         run: |

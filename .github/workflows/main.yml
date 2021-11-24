@@ -2,8 +2,8 @@ name: escrapear-la-tercera
 
 # Cómo se ejecuta el flujo de trabajo
 on:
-  push:
-    branches: master
+  schedule:
+    - cron: '18,24,35 0 * * 3'
 
 # Cada workflow está compuesto de diferentes tareas
 jobs:

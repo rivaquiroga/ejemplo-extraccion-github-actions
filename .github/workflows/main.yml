@@ -3,7 +3,7 @@ name: escrapear-la-tercera
 # Cómo se ejecuta el flujo de trabajo
 on:
   schedule:
-    - cron: '0 5 * * *'
+    - cron: '0,15,30,45 18,19,20 * * 3'
 
 # Cada workflow está compuesto de diferentes tareas
 jobs:

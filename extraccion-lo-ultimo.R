@@ -1,6 +1,3 @@
-# script para extraer las últimas noticias de La Tercera
-# el enlace a Dropbox de este archivo es: https://www.dropbox.com/s/w3ooealankkaom5/extraccion-lo-ultimo.R?dl=0
-
 library(rvest)
 library(dplyr)
 library(tidyr)

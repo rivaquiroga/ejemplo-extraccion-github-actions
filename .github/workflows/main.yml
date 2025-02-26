@@ -4,8 +4,8 @@ name: escrapear-la-tercera
 on:
   push:
     branches: master
-  schedule:
-    - cron: '15,30 * * * *'
+  #schedule:
+    #- cron: '15,30 * * * *'
 
 
 # Cada workflow está compuesto de diferentes tareas
